@@ -1,0 +1,39 @@
+---
+title: "EFSPI_Events_Calendar"
+---
+
+**EFSPI Upcoming Events**
+
+```{r}
+#| echo: false
+#| warning: false
+
+library(tidyverse)
+library(flextable)
+library(readxl)
+
+events <- read_xlsx("Events.xlsx") |>
+  mutate(Date = as.Date(Date))
+
+flextable(events) |>
+  compose(
+    j = "Agenda Link",
+    value = as_paragraph(
+      hyperlink_text(x = "Agenda",
+                     url = events[["Agenda Link"]],
+                     color = "blue",
+                     underlined = TRUE)
+    )
+  ) |>
+  compose(
+    j = "Registration Link",
+    value = as_paragraph(
+      hyperlink_text(x = "Registration",
+                     url = events[["Registration Link"]],
+                     color = "blue",
+                     underlined = TRUE)
+    )
+  )
+```
+
+\`\`\`

@@ -1,0 +1,16 @@
+[
+  {
+    "objectID": "index.html",
+    "href": "index.html",
+    "title": "EFSPI_Events_Calendar",
+    "section": "",
+    "text": "## EFSPI Upcoming Events\n{r}\n#| echo: false\n#| warning: false\nlibrary(tidyverse)\nlibrary(flextable)\nlibrary(readxl)\nevents <- read_xlsx(“Events.xlsx”) |>\nmutate(Date = as.Date(Date))\nflextable(events) |>\ncompose(\nj = “Agenda Link”,\nvalue = as_paragraph(\nhyperlink_text(x = “Agenda”,\nurl = events[[“Agenda Link”]],\ncolor = “blue”,\nunderlined = TRUE)\n)\n) |>\ncompose(\nj = “Registration Link”,\nvalue = as_paragraph(\nhyperlink_text(x = “Registration”,\nurl = events[[“Registration Link”]],\ncolor = “blue”,\nunderlined = TRUE)\n)\n)\n```"
+  },
+  {
+    "objectID": "about.html",
+    "href": "about.html",
+    "title": "About",
+    "section": "",
+    "text": "About this site\n\n1 + 1\n\n[1] 2"
+  }
+]
